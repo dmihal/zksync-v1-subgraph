@@ -1,5 +1,12 @@
-type ExampleEntity @entity {
+type Block @entity {
   id: ID!
-  block: Bytes!
-  count: BigInt!
+  transactions: [Transaction!]! @derivedFrom(field: "block")
+  data: Bytes!
+}
+
+type Transaction @entity {
+  id: ID!
+  type: String!
+  block: Block!
+  data: Bytes!
 }
